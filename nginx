@@ -1,0 +1,6 @@
+#!/bin/bash
+apt-get update -y
+apt-get install nginx -y
+systemctl start nginx
+systemctl enable nging
+echo "hii krishna..this is nginx page.." >/var/www/html/krishna.html

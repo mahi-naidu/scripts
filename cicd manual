@@ -1,0 +1,148 @@
+# tomcat 
+
+#!/bin/bash
+cd /opt
+#java installation
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+#start the java
+rpm -ivh jdk-8u131-linux-x64.rpm
+# install tomcat 
+https://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48-windows-x64.zip
+# unzip the tomcat file
+unzip apache-tomcat-9.0.48-windows-x64.zip
+# rename the tomcat file
+mv apache-tomcat-9.0.46 tomcat
+# allow the permissions 700 to tomcat folder
+chmod -R 700 tomcat
+# goto inside tomcat directory
+cd tomcat/bin
+# start up the tomcat server
+./startup.sh
+
+#jenkins
+
+#!/bin/bash
+cd /opt
+yum  update -y
+#java installation
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+#start the java
+rpm -ivh jdk-8u131-linux-x64.rpm
+#install jenkins in linux os
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum -y install jenkins -y
+systemctl start jenkins
+systemctl enable jenkins
+
+
+# mysql
+
+#!/bin/bash
+cd /opt
+yum update -y
+rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+yum install mysql-community-server -y
+systemctl enable mysqld
+systemctl start mysqld
+
+
+# create data base and users
+# connect database 
+mysql -h <rds end ponint> -u admin -p
+pwd:
+
+create database <database name>;
+create user 'username'@'%' identified by 'database password';
+grant all privileges on databasename.* to 'databaseuser'@'%';
+flush privileges;
+
+# install git yum install git 
+# cd /opt /
+git clone https://github.com/spring-petclinic/spring-framework-petclinic
+
+# install maven
+#!/bin/bash
+#install maven in /opt
+cd /opt
+#download the zip
+wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.zip
+#extract 
+unzip apache-maven-3.8.1-bin.zip
+#rename
+mv apache-maven-3.8.1 maven38
+#change the permissions
+chmod -R 700 maven38
+#delte the zip
+#rm -f apache-maven-3.8.1-bin.zip
+
+
+#cd /opt/spring-framework-petclinic/pom.xml
+/opt/maven38/bin/mvn clean package -P MySQL
+
+
+scp target/petclinic.war root@private ip tomcat:/tmp
+
+
+cicd auto mation:
+-----------------
+-----------------
+do all above installation on ec2 instances
+
+scp pemfile
+bastion
+ ssh -i pemfile user@private ip jenkins
+ login to jenkins
+
+ sudo su -
+ vi /etc/passwd
+change jenkins/bin/false....to....jenkins /bin/bash
+sudo su - jenkins
+pwd.../var/lib/jenkins.....install maven inthis location
+exit 
+
+create target group
+create loadbalancer and attache target group
+
+create record set for route 53 andd attache to loadbalancer listeners
+goto browser and access the r53 name 
+login to jenkins and copy the passwor based on jenkins password path using cat command
+install plugins
+create new registration
+netxt time use uname and pwd
+to login
+
+dashboard..new job..free style ..ok..configuration ....
+general
+scm
+build
+build trigger
+post-build
+
+
+scm...git option
+url
+
+master
+
+ci
+---
+/var/lib/jenkins/maven/bin/mvn clean package
+
+cd
+---
+scp /var/lib/jenkins/workspace/freestylejob name/target/petclinic.war root@privateiptomcat:/tmp
+
+
+apply --save
+
+build
+
+
+
+
+
+
+
+
+
